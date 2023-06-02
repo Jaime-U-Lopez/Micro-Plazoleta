@@ -6,8 +6,7 @@ import com.pragma.plazoletamicroservicio.adapters.http.dto.response.UsuarioRespo
 import com.pragma.plazoletamicroservicio.adapters.http.handlers.IUsuarioHandler;
 import com.pragma.plazoletamicroservicio.adapters.http.mapper.IUsuarioRequestMapper;
 import com.pragma.plazoletamicroservicio.adapters.http.mapper.IUsuarioResponseMapper;
-import com.pragma.plazoletamicroservicio.domain.api.IUsuarioServicePort;
-import com.pragma.plazoletamicroservicio.domain.model.Usuario;
+import com.pragma.plazoletamicroservicio.domain.api.IRestauranteServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class IUsuarioHandlerImpl implements IUsuarioHandler {
 
-    private final IUsuarioServicePort usuarioServicePort;
+    private final IRestauranteServicePort usuarioServicePort;
     private final IUsuarioRequestMapper usuarioRequestMapper;
     private final IUsuarioResponseMapper usuarioResponseMapper;
 

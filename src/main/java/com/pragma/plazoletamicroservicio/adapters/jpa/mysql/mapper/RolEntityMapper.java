@@ -1,7 +1,6 @@
 package com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper;
 
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.RolEntity;
-import com.pragma.plazoletamicroservicio.domain.model.Rol;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

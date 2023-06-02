@@ -6,7 +6,6 @@ import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.RolEntity;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.RolEntityMapper;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IRolRepository;
 import com.pragma.plazoletamicroservicio.configuration.Constants;
-import com.pragma.plazoletamicroservicio.domain.model.Rol;
 import com.pragma.plazoletamicroservicio.domain.spi.IRolPersistencePort;
 import lombok.RequiredArgsConstructor;
 

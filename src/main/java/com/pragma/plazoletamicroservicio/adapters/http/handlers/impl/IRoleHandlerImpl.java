@@ -8,8 +8,6 @@ import com.pragma.plazoletamicroservicio.adapters.http.handlers.IRoleHandler;
 import com.pragma.plazoletamicroservicio.adapters.http.mapper.IRoleRequestMapper;
 import com.pragma.plazoletamicroservicio.adapters.http.mapper.IRoleResponseMapper;
 import com.pragma.plazoletamicroservicio.configuration.Constants;
-import com.pragma.plazoletamicroservicio.domain.api.IRolServicePort;
-import com.pragma.plazoletamicroservicio.domain.model.Rol;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

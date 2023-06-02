@@ -6,8 +6,6 @@ import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.RolEntity;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.RolEntityMapper;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IRolRepository;
 import com.pragma.plazoletamicroservicio.configuration.Constants;
-import com.pragma.plazoletamicroservicio.domain.model.Rol;
-import com.pragma.plazoletamicroservicio.domain.model.Usuario;
 import com.pragma.plazoletamicroservicio.domain.spi.IUsuarioPersistencePort;
 import com.pragma.plazoletamicroservicio.domain.usecase.UsuarioUseCase;
 import org.junit.jupiter.api.BeforeEach;

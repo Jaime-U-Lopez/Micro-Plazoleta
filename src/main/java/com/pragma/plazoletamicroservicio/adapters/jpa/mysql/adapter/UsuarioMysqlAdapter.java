@@ -6,7 +6,6 @@ import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.exceptions.UsuarioYa
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.UsuarioEntityMapper;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IUsuarioRepository;
 import com.pragma.plazoletamicroservicio.configuration.Constants;
-import com.pragma.plazoletamicroservicio.domain.model.Usuario;
 import com.pragma.plazoletamicroservicio.domain.spi.IUsuarioPersistencePort;
 import lombok.RequiredArgsConstructor;
 

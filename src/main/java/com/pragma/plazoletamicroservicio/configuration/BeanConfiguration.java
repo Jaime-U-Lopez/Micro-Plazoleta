@@ -6,11 +6,9 @@ import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.RolEntityMapp
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.UsuarioEntityMapper;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IRolRepository;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IUsuarioRepository;
-import com.pragma.plazoletamicroservicio.domain.api.IRolServicePort;
-import com.pragma.plazoletamicroservicio.domain.api.IUsuarioServicePort;
+import com.pragma.plazoletamicroservicio.domain.api.IRestauranteServicePort;
 import com.pragma.plazoletamicroservicio.domain.spi.IRolPersistencePort;
 import com.pragma.plazoletamicroservicio.domain.spi.IUsuarioPersistencePort;
-import com.pragma.plazoletamicroservicio.domain.usecase.RolUseCase;
 import com.pragma.plazoletamicroservicio.domain.usecase.UsuarioUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +23,7 @@ public class BeanConfiguration {
     private final RolEntityMapper rolEntityMapper;
 
     @Bean
-    public IUsuarioServicePort usuarioServicePort(){
+    public IRestauranteServicePort usuarioServicePort(){
         return new UsuarioUseCase(usuarioPersistencePort(),rolRepository,rolEntityMapper);
     }
 
