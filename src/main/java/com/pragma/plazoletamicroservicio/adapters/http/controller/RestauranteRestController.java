@@ -1,13 +1,14 @@
 package com.pragma.plazoletamicroservicio.adapters.http.controller;
 
-import com.pragma.plazoletamicroservicio.adapters.http.dto.request.UsuarioRequestDto;
-import com.pragma.plazoletamicroservicio.adapters.http.handlers.IUsuarioHandler;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.request.RestauranteRequestDto;
+import com.pragma.plazoletamicroservicio.adapters.http.handlers.IRestauranteHandler;
 import com.pragma.plazoletamicroservicio.configuration.Constants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,20 +20,22 @@ import java.util.Map;
 @RestController
 @RequestMapping("/apiUser/v1")
 @RequiredArgsConstructor
-public class UsuarioRestController {
 
-    private final IUsuarioHandler usuarioHandler;
+public class RestauranteRestController {
 
-    @Operation(summary = "Crear un nuevo user ",
+    private  IRestauranteHandler restauranteHandler;
+
+
+    @Operation(summary = "Crear un nuevo Restaurante ",
     responses = {
-            @ApiResponse(responseCode = "201", description = "Creacion de usuarios ",
+            @ApiResponse(responseCode = "201", description = "Creacion de Restaurantes  ",
             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Map"))),
-            @ApiResponse(responseCode = "409", description = "Propietario ya existente",
+            @ApiResponse(responseCode = "409", description = "Restaurante ya existente",
                     content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))
     })
     @PostMapping("/")
-    public ResponseEntity<Map<String, String>> createUser(@Valid @RequestBody UsuarioRequestDto usuarioRequestDto){
-        usuarioHandler.saveUser(usuarioRequestDto);
+    public ResponseEntity<Map<String, String>> createRestaurante(@Valid @RequestBody RestauranteRequestDto restauranteRequestDto){
+        restauranteHandler.saveRestaurante(restauranteRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,Constants.PROPIETARIO_CREADO_MENSAJE)
         );
@@ -40,7 +43,7 @@ public class UsuarioRestController {
 
     @GetMapping("/usuarios/{id}")
     public Boolean validarRolPropietario(@PathVariable("id") Long id){
-        return usuarioHandler.validarUser(id);
+        return restauranteHandler.validarUser(id);
     }
 
 
@@ -52,8 +55,8 @@ public class UsuarioRestController {
                     @ApiResponse(responseCode = "404", description = "User not found",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @DeleteMapping("")
-    public ResponseEntity<Map<String, String>> deleteUser(@RequestBody UsuarioRequestDto usuarioRequestDto) {
-        usuarioHandler.deleteUsuario(usuarioRequestDto);
+    public ResponseEntity<Map<String, String>> deleteUser(@RequestBody RestauranteRequestDto usuarioRequestDto) {
+        restauranteHandler.deleteRestaurante(usuarioRequestDto);
         return ResponseEntity.ok(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.USUARIO_ELIMINADO_CON_EXITO));
     }
 

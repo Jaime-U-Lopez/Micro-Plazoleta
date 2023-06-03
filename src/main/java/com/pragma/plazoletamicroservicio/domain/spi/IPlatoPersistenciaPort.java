@@ -1,11 +1,10 @@
-package com.pragma.plazoletamicroservicio.domain.api;
+package com.pragma.plazoletamicroservicio.domain.spi;
 
 import com.pragma.plazoletamicroservicio.domain.model.Plato;
-import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 
 import java.util.List;
 
-public interface IPlatoServicePort {
+public interface   IPlatoPersistenciaPort {
 
     void savePlato(Plato plato);
 
@@ -14,6 +13,7 @@ public interface IPlatoServicePort {
     Plato getPlato(Long id);
 
     List<Plato> getAllPlato();
+
 
 
 }

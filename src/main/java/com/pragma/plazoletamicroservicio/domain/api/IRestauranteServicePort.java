@@ -4,7 +4,7 @@ import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 
 public interface IRestauranteServicePort {
 
-    void guardarRestaurante(Restaurante restaurante);
+    void saveRestaurante(Restaurante restaurante);
 
     void deleteRestaurante(Restaurante restaurante);
 

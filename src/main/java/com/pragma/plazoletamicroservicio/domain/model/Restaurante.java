@@ -19,7 +19,7 @@ public class Restaurante {
         this.nit = nit;
         this.direccion = direccion;
         this.telefono = telefono;
-        UrlLogo = urlLogo;
+        this.UrlLogo = urlLogo;
     }
 
     public Long getId() {

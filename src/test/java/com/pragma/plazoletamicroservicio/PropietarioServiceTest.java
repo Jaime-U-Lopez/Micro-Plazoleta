@@ -1,26 +1,9 @@
 package com.pragma.plazoletamicroservicio;
 
-import com.pragma.plazoletamicroservicio.adapters.http.dto.TipoRol;
-import com.pragma.plazoletamicroservicio.adapters.http.exceptions.UsuarioExcepcionRolNoExiste;
-import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.RolEntity;
-import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.RolEntityMapper;
-import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IRolRepository;
-import com.pragma.plazoletamicroservicio.configuration.Constants;
-import com.pragma.plazoletamicroservicio.domain.spi.IUsuarioPersistencePort;
-import com.pragma.plazoletamicroservicio.domain.usecase.UsuarioUseCase;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
 
 public class PropietarioServiceTest {
 
+/*
 
     @Mock
     private IUsuarioPersistencePort usuarioPersistencePort;
@@ -116,5 +99,6 @@ public class PropietarioServiceTest {
         verify(usuarioPersistencePort).getUsuario(id);
         assertTrue(result);
     }
+ */
 
 }

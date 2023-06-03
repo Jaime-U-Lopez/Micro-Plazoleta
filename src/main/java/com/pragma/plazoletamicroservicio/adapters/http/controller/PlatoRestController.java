@@ -1,8 +1,9 @@
 package com.pragma.plazoletamicroservicio.adapters.http.controller;
 
-import com.pragma.plazoletamicroservicio.adapters.http.dto.request.RolRequestDto;
-import com.pragma.plazoletamicroservicio.adapters.http.dto.response.RolResponseDto;
-import com.pragma.plazoletamicroservicio.adapters.http.handlers.IRoleHandler;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestDto;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.response.PlatoResponseDto;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.response.RestauranteResponseDto;
+import com.pragma.plazoletamicroservicio.adapters.http.handlers.IPlatoHandler;
 import com.pragma.plazoletamicroservicio.configuration.Constants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -20,34 +21,35 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/role/v1")
+@RequestMapping("/plato/v1")
 @RequiredArgsConstructor
 //@SecurityRequirement(name = "jwt")
-public class RoleRestController {
-    private final IRoleHandler roleHandler;
+public class PlatoRestController {
+    private  IPlatoHandler platoHandler;
+
 
     @Operation(summary = "mostrar todos los roles ",
             responses = {
                     @ApiResponse(responseCode = "200", description = "All roles returned",
                             content = @Content(mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = RolResponseDto.class)))),
+                                    array = @ArraySchema(schema = @Schema(implementation = RestauranteResponseDto.class)))),
                     @ApiResponse(responseCode = "404", description = "No data found",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @GetMapping("/")
-    public ResponseEntity<List<RolResponseDto>> getAllRoles() {
-        return ResponseEntity.ok(roleHandler.getAllRoles());
+    public ResponseEntity<List<PlatoResponseDto>> getAllRestaurantes() {
+        return ResponseEntity.ok(platoHandler.getAllPlatos());
     }
 
     @Operation(summary = "Get all the roles",
             responses = {
                     @ApiResponse(responseCode = "200", description = "All roles returned",
                             content = @Content(mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = RolResponseDto.class)))),
+                                    array = @ArraySchema(schema = @Schema(implementation = RestauranteResponseDto.class)))),
                     @ApiResponse(responseCode = "404", description = "No data found",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @PostMapping("/")
-    public ResponseEntity<Map<String, String>>  createRole(@Valid @RequestBody RolRequestDto requestDto ) {
-        roleHandler.saveRol(requestDto);
+    public ResponseEntity<Map<String, String>>  createPlato(@Valid @RequestBody PlatoRequestDto requestDto ) {
+   platoHandler.savePlato(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,Constants.ROL_CREADO_CON_EXITO)
         );
@@ -62,8 +64,8 @@ public class RoleRestController {
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
 
     @DeleteMapping("")
-    public ResponseEntity<Map<String, String>> deleteUser(@RequestBody RolResponseDto rolResponseDto) {
-        roleHandler.deleteRol(rolResponseDto);
+    public ResponseEntity<Map<String, String>> deleteUser(@RequestBody PlatoResponseDto platoResponseDto) {
+       platoHandler.deletePlato(platoResponseDto);
         return ResponseEntity.ok(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.ROL_ELIMINADO_CON_EXITO));
     }
 

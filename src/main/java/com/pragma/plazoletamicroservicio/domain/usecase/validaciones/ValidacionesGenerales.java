@@ -1,6 +1,6 @@
 package com.pragma.plazoletamicroservicio.domain.usecase.validaciones;
 
-import com.pragma.plazoletamicroservicio.adapters.http.dto.request.UsuarioRequestDto;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.request.RestauranteRequestDto;
 import com.pragma.plazoletamicroservicio.adapters.http.exceptions.FechaNacimientoMalFormatoException;
 import com.pragma.plazoletamicroservicio.configuration.Constants;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 @AllArgsConstructor
 public class ValidacionesGenerales {
 
-    protected UsuarioRequestDto usuarioRequestDto;
+    protected RestauranteRequestDto usuarioRequestDto;
     protected Pattern patron;
     protected Matcher matcher;
     protected String expresionRegular;

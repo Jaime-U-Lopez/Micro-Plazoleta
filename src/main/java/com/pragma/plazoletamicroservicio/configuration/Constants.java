@@ -10,7 +10,25 @@ public class Constants {
     public static final Long EMPLEADO_ROL_ID = 2L;
     public static final Long PROPIETARIO_ROL_ID = 3l;
 
+    public static final Long ADMINISTRADOR_ROL_ID = 4l;
+
+
     public static final String CORREO_MAL_FORMULADO_EXCEPTION = "Correo mal formulado, por favor ingrese un correo valido.";
+
+
+    public static final String LISTA_PLATO_NO_VACIA = "lista de platos vacia ";
+    public static final String PLATO_NO_EXITE = "El plato  seleccionado no exite en la base de datos.";
+    public static final String PLATO_YA_EXITE = "El plato  seleccionado YA  exite en la base de datos.";
+
+
+    public static final String RESTAURANTE_NO_EXISTE = "El Restaurante   seleccionado no exite en la base de datos.";
+
+
+    public static final String RESTAURANTE_YA_EXISTE = "El Restaurante   seleccionado YA exite en la base de datos.";
+
+
+
+
     public static final String DOCUMENTO_MAL_FORMULADO_EXCEPTION = "El numero de documento no es de un formato valido.";
     public static final String CELULAR_MAL_FORMULADO_EXCEPTION = "El numero de celular no es correcto.";
     public static final String CELULAR_LONGITUD_EXCEPTION = "El numero de celular debe tener entre 8 y 13 caracteres contando el caracter '+'.";
