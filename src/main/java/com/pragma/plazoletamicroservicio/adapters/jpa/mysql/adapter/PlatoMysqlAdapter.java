@@ -27,9 +27,7 @@ public class PlatoMysqlAdapter  implements IPlatoPersistenciaPort {
     @Override
     public void savePlato(Plato plato) {
 
-        if(platoRepository.findById(plato.getId()).isPresent()){
-            throw new PlatoException(Constants.PLATO_YA_EXITE);
-        }
+
         this.platoRepository.save(platoEntityMapper.platotoPlatoEntity(plato));
 
     }

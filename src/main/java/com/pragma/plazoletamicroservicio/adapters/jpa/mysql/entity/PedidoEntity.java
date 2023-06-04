@@ -2,6 +2,7 @@ package com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity;
 
 
 import com.pragma.plazoletamicroservicio.domain.model.Pedido;
+import com.pragma.plazoletamicroservicio.domain.model.Plato;
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,29 +12,34 @@ import lombok.Setter;
 
 import java.util.List;
 
+
+
+import java.util.List;
+
 @Entity
-@Table(name = "plato")
+@Table(name = "pedido")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class PlatoEntity {
+public class PedidoEntity {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
-    private Long precio;
-    private String descripcion;
-    private String urlImagen;
-    private String categoria;
     @OneToOne
     private RestauranteEntity restauranteEntity;
 
-    private boolean estado= true;
+    @OneToOne
+    private PlatoEntity platoEntity;
+    private int cantidad;
+    private String estado= "pendiente";
 
-    @OneToMany(mappedBy = "platoEntity")
-    private List<PedidoEntity> listaPedidos;
+
+
+
+
+
 
 }

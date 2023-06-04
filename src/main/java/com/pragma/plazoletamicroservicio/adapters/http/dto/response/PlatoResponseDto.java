@@ -1,5 +1,6 @@
 package com.pragma.plazoletamicroservicio.adapters.http.dto.response;
 
+import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.RestauranteEntity;
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ public class PlatoResponseDto {
     private String urlImagen;
     private String categoria;
 
-    private Restaurante restaurante;
+
+    private RestauranteEntity restauranteEntity;
     private boolean estado= true;
 }

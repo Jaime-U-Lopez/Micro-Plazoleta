@@ -1,6 +1,7 @@
 package com.pragma.plazoletamicroservicio.configuration;
 
 import com.pragma.plazoletamicroservicio.adapters.http.exceptions.*;
+import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.exceptions.PlatoException;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.exceptions.UsuarioYaExistenteException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,7 @@ public class ApiExceptionHandler {
             RolExisteEnBaseDatos.class,
             RoleInfoNotFoundException.class,
             UsuarioYaExistenteException.class,
+            PlatoException.class,
             UsuarioNoSeEncuentraRegistradoException.class})
 
     public ResponseEntity<Object> BadRequestExceptionHandler(RuntimeException ex){
