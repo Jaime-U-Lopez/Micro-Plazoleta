@@ -23,7 +23,7 @@ public class RestauranteEntity {
     private String   nombre;
     private Long nit;
     private String direccion;
-    private int telefono;
+    private Long telefono;
     private String UrlLogo;
 
 

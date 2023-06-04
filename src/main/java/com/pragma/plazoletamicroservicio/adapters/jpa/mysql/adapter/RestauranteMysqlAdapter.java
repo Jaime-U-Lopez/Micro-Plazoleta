@@ -36,29 +36,29 @@ public class RestauranteMysqlAdapter  implements IRestaurantePersistenciaPort {
     }
 
     @Override
-    public void deleteRestaurante(Restaurante restaurante) {
+    public void deleteRestaurante(Long id ) {
 
 
-        Restaurante restauranteRepo=  restauranteEntityMapper.restauranteEntityToRestaurante(restauranteRepository.findById(restaurante.getId());
-        Optional<Restaurante>  restauranteOptional=Optional.ofNullable(restaurante);
+        Optional<RestauranteEntity> restauranteOptional= restauranteRepository.findById(id);
+
         if (!restauranteOptional.isPresent()){
             throw new RestauranteNoExiste(Constants.RESTAURANTE_NO_EXISTE);
         }
 
-        RestauranteEntity restauranteEntity=   restauranteEntityMapper.restaurantetoRestauranteEntity(restaurante);
-        restauranteRepository.delete(restauranteEntity);
+         restauranteRepository.delete(restauranteOptional.get());
 
     }
 
     @Override
     public Restaurante getRestaurante(Long id) {
 
-        Restaurante restaurante=  restauranteEntityMapper.restauranteEntityToRestaurante(restauranteRepository.findById(id);
-        Optional<Restaurante>  restauranteOptional=Optional.ofNullable(restaurante);
+        Optional<RestauranteEntity> restauranteOptional=  restauranteRepository.findById(id);
         if (!restauranteOptional.isPresent()){
             throw new RestauranteNoExiste(Constants.RESTAURANTE_NO_EXISTE);
         }
-        return  restauranteOptional.get();
+
+
+        return    restauranteEntityMapper.restauranteEntityToRestaurante(restauranteOptional.get());
     }
 
 

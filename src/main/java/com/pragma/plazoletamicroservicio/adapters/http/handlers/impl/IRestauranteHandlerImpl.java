@@ -11,6 +11,8 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Data
@@ -24,18 +26,19 @@ public class IRestauranteHandlerImpl implements IRestauranteHandler {
 
     @Override
     public void saveRestaurante(RestauranteRequestDto restauranteRequestDto) {
-
-
         Restaurante restaurante = restauranteRequestMapper.toRestaurante(restauranteRequestDto);
 
         restauranteServicePort.saveRestaurante(restaurante);
 
-
-
     }
 
     @Override
-    public void deleteRestaurante(RestauranteRequestDto restauranteRequestDto) {
+    public void deleteRestaurante(Long id ) {
+
+    restauranteServicePort.deleteRestaurante(id);
+
+
+
 
 /*
 
@@ -47,6 +50,12 @@ public class IRestauranteHandlerImpl implements IRestauranteHandler {
  */
 
 
+    }
+
+    @Override
+    public List<RestauranteResponseDto> getAllRestauntes() {
+
+        return  restauranteResponseMapper.toResponseList(restauranteServicePort.getAllRestaurante());
     }
 
     @Override

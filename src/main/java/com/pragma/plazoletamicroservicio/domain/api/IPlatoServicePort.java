@@ -8,8 +8,8 @@ import java.util.List;
 public interface IPlatoServicePort {
 
     void savePlato(Plato plato);
-
-    void deletePlato(Plato plato);
+    void updatePlato(Plato plato);
+    void deletePlato(Long id);
 
     Plato getPlato(Long id);
 

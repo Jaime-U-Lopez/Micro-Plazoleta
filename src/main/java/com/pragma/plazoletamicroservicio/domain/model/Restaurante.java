@@ -8,11 +8,11 @@ public class Restaurante {
   private String   nombre;
   private Long nit;
   private String direccion;
-  private int telefono;
+  private Long telefono;
   private String UrlLogo;
 
 
-    public Restaurante(Long id, Long idPropietario, String nombre, Long nit, String direccion, int telefono, String urlLogo) {
+    public Restaurante(Long id, Long idPropietario, String nombre, Long nit, String direccion, Long telefono, String urlLogo) {
         this.id = id;
         this.idPropietario = idPropietario;
         this.nombre = nombre;
@@ -62,11 +62,11 @@ public class Restaurante {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 

@@ -1,10 +1,14 @@
 package com.pragma.plazoletamicroservicio.domain.usecase;
 
+import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.RestauranteEntity;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.RestauranteEntityMapper;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IRestauranteRepository;
 import com.pragma.plazoletamicroservicio.domain.api.IRestauranteServicePort;
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 import com.pragma.plazoletamicroservicio.domain.spi.IRestaurantePersistenciaPort;
+
+import java.util.List;
+import java.util.Optional;
 
 public class RestauranteUseCase implements IRestauranteServicePort {
 
@@ -20,7 +24,7 @@ public class RestauranteUseCase implements IRestauranteServicePort {
 
     @Override
     public void saveRestaurante(Restaurante restaurante) {
-
+// TODO SE DEBE DE ARREGLAR LA VALICACION DE PRIIETARIO EN RESTAURANTE
         Long idPropietario= restaurante.getIdPropietario();
 
         restaurantePersistenciaPort.saveRestaurante(restaurante);
@@ -28,12 +32,20 @@ public class RestauranteUseCase implements IRestauranteServicePort {
     }
 
     @Override
-    public void deleteRestaurante(Restaurante restaurante) {
+    public void deleteRestaurante(Long id ) {
+
+
+        restaurantePersistenciaPort.deleteRestaurante(id);
 
     }
 
     @Override
     public Restaurante getRestaurante(Long id) {
-        return null;
+        return restaurantePersistenciaPort.getRestaurante(id);
+    }
+
+    @Override
+    public List<Restaurante> getAllRestaurante() {
+        return restaurantePersistenciaPort.getAllRestaurante();
     }
 }

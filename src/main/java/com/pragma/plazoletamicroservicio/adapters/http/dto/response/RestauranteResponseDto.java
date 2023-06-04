@@ -7,11 +7,13 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class RestauranteResponseDto {
+
+ private Long id;
     private Long idPropietario;
     private String   nombre;
     private Long nit;
     private String direccion;
-    private int telefono;
+    private Long telefono;
     private String UrlLogo;
 
 }

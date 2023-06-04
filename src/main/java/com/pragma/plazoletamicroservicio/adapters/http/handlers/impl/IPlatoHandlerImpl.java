@@ -1,6 +1,7 @@
 package com.pragma.plazoletamicroservicio.adapters.http.handlers.impl;
 
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestDto;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestUpdateDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.PlatoResponseDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.RestauranteResponseDto;
 import com.pragma.plazoletamicroservicio.adapters.http.exceptions.RolNoExisteTipoRol;
@@ -38,12 +39,24 @@ public class IPlatoHandlerImpl implements IPlatoHandler {
     }
 
     @Override
-    public void savePlato(PlatoRequestDto rolRequestDto) {
+    public void savePlato(PlatoRequestDto platoRequestDto) {
+
+
+        platoServicePort.savePlato(platoRequestMapper.toPlato(platoRequestDto));
+    }
+
+    @Override
+    public void updatePlato(PlatoRequestUpdateDto platoRequestUpdateDto) {
+
+        platoServicePort.updatePlato(platoRequestMapper.updatetoPlato(platoRequestUpdateDto));
 
     }
 
     @Override
-    public void deletePlato(PlatoResponseDto platoResponseDto) {
+    public void deletePlato(Long id) {
+        platoServicePort.deletePlato(id);
+
+
 /*
 
         Rol rol = roleResponseMapper.toRol(rolResponseDto);

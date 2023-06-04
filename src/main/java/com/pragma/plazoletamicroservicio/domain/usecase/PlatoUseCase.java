@@ -2,14 +2,11 @@ package com.pragma.plazoletamicroservicio.domain.usecase;
 
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.PlatoEntityMapper;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IPlatoRepository;
-import com.pragma.plazoletamicroservicio.configuration.Constants;
 import com.pragma.plazoletamicroservicio.domain.api.IPlatoServicePort;
 import com.pragma.plazoletamicroservicio.domain.model.Plato;
 import com.pragma.plazoletamicroservicio.domain.spi.IPlatoPersistenciaPort;
-import com.pragma.plazoletamicroservicio.domain.usecase.validaciones.ValidacionesUsuario;
 
 import java.util.List;
-import java.util.Optional;
 
 public class PlatoUseCase implements IPlatoServicePort {
 
@@ -17,41 +14,38 @@ public class PlatoUseCase implements IPlatoServicePort {
 
     private final IPlatoPersistenciaPort platoPersistenciaPort;
     private final IPlatoRepository platoRepository;
-    private final PlatoEntityMapper rolEntityMapper;
+    private final PlatoEntityMapper platoEntityMapper;
 
-    public PlatoUseCase(IPlatoPersistenciaPort platoPersistenciaPort, IPlatoRepository platoRepository, PlatoEntityMapper rolEntityMapper) {
+    public PlatoUseCase(IPlatoPersistenciaPort platoPersistenciaPort, IPlatoRepository platoRepository, PlatoEntityMapper platoEntityMapper) {
         this.platoPersistenciaPort = platoPersistenciaPort;
         this.platoRepository = platoRepository;
-        this.rolEntityMapper = rolEntityMapper;
+        this.platoEntityMapper = platoEntityMapper;
     }
 
     @Override
     public void savePlato(Plato plato) {
 
+//tODO SE DEVE DE ARREGLAR LA VALIDACION DE PROPIETARIO AL MOMENTO DE CREAR
+        platoPersistenciaPort.savePlato(plato);
 
-        /*
-
-        ValidacionesUsuario validaciones = new ValidacionesUsuario();
-        validaciones.validarFechaNacimientoFormato(usuario.getFechaNacimiento());
-        validaciones.validadFechaNacimiento(usuario.getFechaNacimiento());
-
-        Long rolactual= validarRol(rol);
-        Optional<RolEntity> rolEntity = rolRepository.findById(rolactual);
-        if(rolEntity.isPresent()){
-            Rol rols = rolEntityMapper.rolEntityToRol(rolEntity.get());
-            usuario.setIdRol(rols);
-        }
-        this.usuarioPersistencePort.guardarUsuario(usuario);
-  */
 
     }
 
     @Override
-    public void deletePlato(Plato plato) {
+    public void updatePlato(Plato plato) {
 
-        this.platoPersistenciaPort.deletePlato(plato);
+        //TODO ACTUALZIAR EL TEMA DE AUTENTICACION DE PROPIETARIO
+        platoPersistenciaPort.updatePlato(plato);
 
     }
+
+    @Override
+    public void deletePlato(Long id) {
+
+        this.platoPersistenciaPort.deletePlato(id);
+
+    }
+
 
     @Override
     public Plato getPlato(Long id) {
@@ -63,14 +57,5 @@ public class PlatoUseCase implements IPlatoServicePort {
     public List<Plato> getAllPlato() {
         return  this.platoPersistenciaPort.getAllPlato();
     }
-/*
-
-
-    @Override
-    public Boolean validarPropietario(Long id) {
-        Usuario usuario = this.usuarioPersistencePort.getUsuario(id);
-        return usuario.getIdRol().getId().equals(Constants.PROPIETARIO_ROL_ID);
-    }
- */
 
 }

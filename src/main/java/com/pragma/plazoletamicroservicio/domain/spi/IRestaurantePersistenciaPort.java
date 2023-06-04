@@ -9,7 +9,7 @@ public interface IRestaurantePersistenciaPort {
 
     void saveRestaurante(Restaurante restaurante);
 
-    void deleteRestaurante(Restaurante restaurante);
+    void deleteRestaurante(Long id);
 
     Restaurante getRestaurante(Long id);
 

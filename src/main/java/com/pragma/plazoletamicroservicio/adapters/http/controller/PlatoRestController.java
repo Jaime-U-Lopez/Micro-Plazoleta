@@ -1,6 +1,7 @@
 package com.pragma.plazoletamicroservicio.adapters.http.controller;
 
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestDto;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestUpdateDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.PlatoResponseDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.RestauranteResponseDto;
 import com.pragma.plazoletamicroservicio.adapters.http.handlers.IPlatoHandler;
@@ -11,7 +12,9 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,27 +25,30 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/plato/v1")
-@RequiredArgsConstructor
+
 //@SecurityRequirement(name = "jwt")
 public class PlatoRestController {
     private  IPlatoHandler platoHandler;
+    @Autowired
+    public PlatoRestController(IPlatoHandler platoHandler) {
+        this.platoHandler = platoHandler;
+    }
 
-
-    @Operation(summary = "mostrar todos los roles ",
+    @Operation(summary = "mostrar todos los platos ",
             responses = {
-                    @ApiResponse(responseCode = "200", description = "All roles returned",
+                    @ApiResponse(responseCode = "200", description = "All Platos   returned",
                             content = @Content(mediaType = "application/json",
                                     array = @ArraySchema(schema = @Schema(implementation = RestauranteResponseDto.class)))),
                     @ApiResponse(responseCode = "404", description = "No data found",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @GetMapping("/")
-    public ResponseEntity<List<PlatoResponseDto>> getAllRestaurantes() {
+    public ResponseEntity<List<PlatoResponseDto>> getAllPlatos() {
         return ResponseEntity.ok(platoHandler.getAllPlatos());
     }
 
-    @Operation(summary = "Get all the roles",
+    @Operation(summary = "Crear un plato ",
             responses = {
-                    @ApiResponse(responseCode = "200", description = "All roles returned",
+                    @ApiResponse(responseCode = "200", description = "Message  returned",
                             content = @Content(mediaType = "application/json",
                                     array = @ArraySchema(schema = @Schema(implementation = RestauranteResponseDto.class)))),
                     @ApiResponse(responseCode = "404", description = "No data found",
@@ -51,9 +57,28 @@ public class PlatoRestController {
     public ResponseEntity<Map<String, String>>  createPlato(@Valid @RequestBody PlatoRequestDto requestDto ) {
    platoHandler.savePlato(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,Constants.ROL_CREADO_CON_EXITO)
+                Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,Constants.PLATO_CREADO_MENSAJE)
         );
     }
+
+
+    @Operation(summary = "Update un plato ",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "All roles returned",
+                            content = @Content(mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = RestauranteResponseDto.class)))),
+                    @ApiResponse(responseCode = "404", description = "No data found",
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
+
+    @PutMapping("/")
+    public ResponseEntity<Map<String, String>>  updatePlato(@Valid @RequestBody PlatoRequestUpdateDto platoRequestUpdateDto ) {
+        platoHandler.updatePlato(platoRequestUpdateDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,Constants.PLATO_CREADO_MENSAJE)
+        );
+    }
+
+
 
 
     @Operation(summary = "Elimine un rol ",
@@ -63,10 +88,10 @@ public class PlatoRestController {
                     @ApiResponse(responseCode = "404", description = "User not found",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
 
-    @DeleteMapping("")
-    public ResponseEntity<Map<String, String>> deleteUser(@RequestBody PlatoResponseDto platoResponseDto) {
-       platoHandler.deletePlato(platoResponseDto);
-        return ResponseEntity.ok(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.ROL_ELIMINADO_CON_EXITO));
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, String>> deletePlato(@PathVariable("id") Long id ) {
+       platoHandler.deletePlato(id);
+        return ResponseEntity.ok(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.PLATO_ELIMINADO));
     }
 
 

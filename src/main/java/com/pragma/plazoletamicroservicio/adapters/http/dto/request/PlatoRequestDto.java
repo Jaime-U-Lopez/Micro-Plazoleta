@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 
@@ -15,9 +16,8 @@ import lombok.*;
 public class PlatoRequestDto {
 
     @NotBlank
-
     private String nombre;
-    @NotBlank
+    @Positive(message = "El precio  debe ser positivo")
     private Long precio;
     @NotBlank
     private String descripcion;
@@ -25,9 +25,8 @@ public class PlatoRequestDto {
     private String urlImagen;
     @NotBlank
     private String categoria;
-    @NotBlank
-    @OneToOne
-    private RestauranteEntity restauranteEntity;
+    @Positive(message = "El precio  debe ser positivo")
+    private int idRestaurante;
 
 
 

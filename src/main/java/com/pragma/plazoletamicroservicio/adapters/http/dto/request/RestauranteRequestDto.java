@@ -1,13 +1,13 @@
 package com.pragma.plazoletamicroservicio.adapters.http.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.math.BigInteger;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,25 +16,21 @@ import lombok.Setter;
 public class RestauranteRequestDto {
 
 
-    @NotBlank
-    @Positive(message = "El numero de documento no puede ser negativo.")
+
+    @Positive(message = "El número de teléfono debe ser positivo")
     private Long idPropietario;
     @NotBlank
-    private String   nombre;
-
-    @Pattern(message = "El numero de documento debe ser solo numerico.", regexp = "^[0-9]+$")
-    @Positive(message = "El numero de documento no puede ser negativo.")
-    private Long nit;
+    private String nombre;
+    @Positive(message = "El Nit  debe ser positivo")
+    @Max(value = 99999999999l, message = "El Nit  debe ser menor o igual a 9999999999")
+    private long nit;
 
     @NotBlank
     private String direccion;
 
-
-    @NotBlank
-    @Pattern(regexp = "^(\\+\\d{1,3})?((\\d{1,3})|\\d{1,3})\\d{3,4}\\d{4}$", message = "el numero de celular debe tener el formato correcto.")
-    @Size(min = 6, max = 13, message = "El numero de celular debe tener entre 6 y 13 digitos.")
-    @Positive(message = "El numero de celular no puede ser negativo")
-    private int telefono;
+    @Positive(message = "El número de teléfono debe ser positivo")
+    @Max(value = 9999999999L, message = "El teléfono  debe ser menor o igual a 9999999999")
+    private long telefono;
 
     @NotBlank
     private String UrlLogo;

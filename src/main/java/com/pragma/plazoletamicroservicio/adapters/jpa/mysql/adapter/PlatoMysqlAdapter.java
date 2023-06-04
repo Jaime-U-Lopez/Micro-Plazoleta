@@ -35,12 +35,25 @@ public class PlatoMysqlAdapter  implements IPlatoPersistenciaPort {
     }
 
     @Override
-    public void deletePlato(Plato plato) {
-
+    public void updatePlato(Plato plato) {
         if(platoRepository.findById(plato.getId()).isPresent()){
+            throw new PlatoException(Constants.PLATO_YA_EXITE);
+        }
+
+        platoEntityMapper.platotoPlatoEntity(plato);
+
+        this.platoRepository.saveAndFlush(platoEntityMapper.platotoPlatoEntity(plato));
+    }
+
+    @Override
+    public void deletePlato(Long id) {
+
+        Optional<PlatoEntity>  plato=  platoRepository.findById(id);
+
+        if(!plato.isPresent()){
             throw new PlatoException(Constants.PLATO_NO_EXITE);
         }
-        this.platoRepository.delete(platoEntityMapper.platotoPlatoEntity(plato));
+        this.platoRepository.delete(plato.get());
     }
 
     @Override
@@ -64,8 +77,6 @@ public class PlatoMysqlAdapter  implements IPlatoPersistenciaPort {
 
         }
         return platoEntityMapper.toPlatoList(platoEntityList);
-
-
 
 
     }
