@@ -16,6 +16,7 @@ import java.util.List;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IPlatoRequestMapper {
 
+
     Plato toPlato(PlatoRequestDto platoRequestDto);
     Plato updatetoPlato(PlatoRequestUpdateDto platoRequestUpdateDto);
     List<PlatoResponseDto> toResponseList(List<Plato> platoList);

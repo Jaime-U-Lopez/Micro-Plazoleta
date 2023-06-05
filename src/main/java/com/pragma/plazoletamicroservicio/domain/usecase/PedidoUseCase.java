@@ -2,8 +2,10 @@ package com.pragma.plazoletamicroservicio.domain.usecase;
 
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.PedidoEntityMapper;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.PlatoEntityMapper;
+import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.RestauranteEntityMapper;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IPedidoRepository;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IPlatoRepository;
+import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IRestauranteRepository;
 import com.pragma.plazoletamicroservicio.domain.api.IPedidoServicePort;
 import com.pragma.plazoletamicroservicio.domain.api.IPlatoServicePort;
 import com.pragma.plazoletamicroservicio.domain.model.Pedido;
@@ -21,6 +23,16 @@ public class PedidoUseCase implements IPedidoServicePort {
     private final IPedidoRepository pedidoRepository;
     private final PedidoEntityMapper pedidoEntityMapper;
 
+/*
+
+
+    private final IPlatoRepository platoRepository;
+    private final IRestauranteRepository restauranteRepository;
+    private final RestauranteEntityMapper restauranteEntityMapper;
+    private final PlatoEntityMapper platoEntityMapper;
+
+ */
+
     public PedidoUseCase(IPedidoPersistenciaPort pedidoPersistenciaPort, IPedidoRepository pedidoRepository, PedidoEntityMapper pedidoEntityMapper) {
         this.pedidoPersistenciaPort = pedidoPersistenciaPort;
         this.pedidoRepository = pedidoRepository;
@@ -30,7 +42,11 @@ public class PedidoUseCase implements IPedidoServicePort {
     @Override
     public void savePedido(Pedido pedido) {
 
+
+
         pedidoPersistenciaPort.savePedido(pedido);
+
+
 
     }
 

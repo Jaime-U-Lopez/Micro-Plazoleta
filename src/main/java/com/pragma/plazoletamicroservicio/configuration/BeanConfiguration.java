@@ -41,7 +41,7 @@ public class BeanConfiguration {
 
     @Bean
     public IPlatoServicePort platoServicePort(){
-        return new PlatoUseCase(platoPersistencePort(),platoRepository,platoEntityMapper);
+        return new PlatoUseCase(platoPersistencePort(),platoRepository, restauranteRepository , restauranteEntityMapper, platoEntityMapper);
     }
 
 

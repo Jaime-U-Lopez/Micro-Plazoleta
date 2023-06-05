@@ -14,4 +14,6 @@ public interface RestauranteEntityMapper {
     Restaurante restauranteEntityToRestaurante(RestauranteEntity restauranteEntity);
    RestauranteEntity restaurantetoRestauranteEntity(Restaurante restaurante);
     List<Restaurante> toRestauranteList(List<RestauranteEntity> RestauranteEntityList);
+
+
 }

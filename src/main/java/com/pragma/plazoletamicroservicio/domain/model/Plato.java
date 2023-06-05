@@ -1,5 +1,7 @@
 package com.pragma.plazoletamicroservicio.domain.model;
 
+import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.RestauranteEntity;
+
 public class Plato {
 
 

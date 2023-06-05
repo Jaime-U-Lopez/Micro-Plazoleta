@@ -4,6 +4,7 @@ package com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity;
 import com.pragma.plazoletamicroservicio.domain.model.Pedido;
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class PlatoEntity {
     private String descripcion;
     private String urlImagen;
     private String categoria;
+
     @OneToOne
     private RestauranteEntity restauranteEntity;
 

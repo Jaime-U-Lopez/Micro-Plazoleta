@@ -19,16 +19,18 @@ public class PlatoMysqlAdapter  implements IPlatoPersistenciaPort {
     private IPlatoRepository platoRepository;
     private PlatoEntityMapper platoEntityMapper;
 
+
     public PlatoMysqlAdapter(IPlatoRepository platoRepository, PlatoEntityMapper platoEntityMapper) {
         this.platoRepository = platoRepository;
         this.platoEntityMapper = platoEntityMapper;
     }
 
     @Override
-    public void savePlato(Plato plato) {
+    public void savePlato(PlatoEntity platoEntity ) {
 
 
-        this.platoRepository.save(platoEntityMapper.platotoPlatoEntity(plato));
+
+        this.platoRepository.save(platoEntity);
 
     }
 

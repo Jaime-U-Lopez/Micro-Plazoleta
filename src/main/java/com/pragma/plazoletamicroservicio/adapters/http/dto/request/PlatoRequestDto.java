@@ -1,6 +1,7 @@
 package com.pragma.plazoletamicroservicio.adapters.http.dto.request;
 
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.RestauranteEntity;
+import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
@@ -17,7 +18,7 @@ public class PlatoRequestDto {
 
     @NotBlank
     private String nombre;
-    @Positive(message = "El precio  debe ser positivo")
+    @Positive(message = "El precio  debe ser positivo y mayor a cero")
     private Long precio;
     @NotBlank
     private String descripcion;
@@ -25,9 +26,10 @@ public class PlatoRequestDto {
     private String urlImagen;
     @NotBlank
     private String categoria;
-    @Positive(message = "El precio  debe ser positivo")
-    private int idRestaurante;
 
+   // private RestauranteEntity RestauranteEntity;
+    //@Positive(message = "El id   debe ser positivo y mayor a cero")
+    private Restaurante restaurante ;
 
 
 

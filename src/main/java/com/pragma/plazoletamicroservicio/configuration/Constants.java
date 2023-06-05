@@ -17,6 +17,12 @@ public class Constants {
 
 
     public static final String LISTA_PLATO_NO_VACIA = "lista de platos vacia ";
+
+    public static final String PEDIDO_NO_EXITE = "El pedido   seleccionado no exite en la base de datos.";
+    public static final String PEDIDO_CREADO = "El Pedido creado con exito.";
+    public static final String PEDIDO_ELIMINADO = "El Pedido eliminado con exito.";
+    public static final String PEDIDO_ACTUALIZADO = "El Pedido actualizado con exito.";
+
     public static final String PLATO_NO_EXITE = "El plato  seleccionado no exite en la base de datos.";
     public static final String PLATO_YA_EXITE = "El plato  seleccionado YA  exite en la base de datos.";
 

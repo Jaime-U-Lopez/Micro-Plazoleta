@@ -21,8 +21,8 @@ public class PedidoRequestDto {
 
 
 
-    private Restaurante restaurante;
-    private Plato plato;
+    private  Long  IdRestaurante ;
+    private  Long  idPlato ;
 
     @Positive(message = "El cantidad debe ser positivo")
     private int cantidad;
@@ -30,7 +30,10 @@ public class PedidoRequestDto {
     @NotBlank
     private String estado= "pendiente";
 
+
     private List<Pedido> listaPedidos;
+
+
 
 
 
