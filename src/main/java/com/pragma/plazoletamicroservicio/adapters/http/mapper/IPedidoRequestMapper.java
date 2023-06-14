@@ -11,6 +11,5 @@ import org.mapstruct.ReportingPolicy;
 unmappedTargetPolicy = ReportingPolicy.IGNORE,
 unmappedSourcePolicy =  ReportingPolicy.IGNORE)
 public interface IPedidoRequestMapper {
-
     Pedido toPedido(PedidoRequestDto pedidoRequestDto);
 }

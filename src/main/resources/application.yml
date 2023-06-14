@@ -6,8 +6,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  application:
+    name: microsercicio-plazoleta
 
 
 server:
   port: 8081
+
 
