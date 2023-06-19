@@ -1,10 +1,17 @@
 package com.pragma.plazoletamicroservicio.adapters.http.controller;
 
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.RestauranteRequestDto;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.response.PersonResponseDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.RestauranteResponseDto;
+import com.pragma.plazoletamicroservicio.adapters.http.exceptions.UsuarioNoSeEncuentraRegistradoException;
 import com.pragma.plazoletamicroservicio.adapters.http.handlers.IRestauranteHandler;
+import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.UsuarioAutenticado;
 import com.pragma.plazoletamicroservicio.configuration.Constants;
+
+import com.pragma.plazoletamicroservicio.configuration.FeignClient.ExceptionUserRequest;
+import com.pragma.plazoletamicroservicio.configuration.FeignClient.UserHandlerFeing;
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
+import feign.FeignException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,9 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/apiRestaurantes/v1")
@@ -28,7 +33,8 @@ public class RestauranteRestController {
 
     private final IRestauranteHandler restauranteHandler;
 
-
+    @Autowired
+    private UserHandlerFeing userHandlerFeing;
     @Autowired
     public RestauranteRestController(IRestauranteHandler restauranteHandler) {
         this.restauranteHandler = restauranteHandler;
@@ -42,10 +48,25 @@ public class RestauranteRestController {
     })
     @PostMapping("/")
     public ResponseEntity<Map<String, String>> createRestaurante(@Valid @RequestBody RestauranteRequestDto restauranteRequestDto){
-        restauranteHandler.saveRestaurante(restauranteRequestDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(
-                Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,Constants.RESTAURANTE_CREADO_MENSAJE)
-        );
+
+        Optional<PersonResponseDto> response = userHandlerFeing.getOwner(restauranteRequestDto.getIdPropietario());
+
+        UsuarioAutenticado usuarioAutenticado=   new  UsuarioAutenticado("token",response.get().getEmail());
+
+        LinkedList<UsuarioAutenticado> listUser= new LinkedList();
+        listUser.add(usuarioAutenticado);
+
+        usuarioAutenticado.setAuthorities(listUser);
+
+             restauranteHandler.saveRestaurante(restauranteRequestDto);
+             return ResponseEntity.status(HttpStatus.CREATED).body(
+                     Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,Constants.RESTAURANTE_CREADO_MENSAJE)
+             );
+
+
+
+
+
     }
 
     @Operation(summary = "Mostrar  un  Restaurante ",

@@ -27,11 +27,6 @@ public class PlatoRequestDto {
     @NotBlank
     private String categoria;
 
-   // private RestauranteEntity RestauranteEntity;
-    //@Positive(message = "El id   debe ser positivo y mayor a cero")
-    private Restaurante restaurante ;
-
-
 
 
 

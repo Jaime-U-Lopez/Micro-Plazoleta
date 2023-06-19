@@ -30,10 +30,12 @@ public class PlatoEntity {
     private String urlImagen;
     private String categoria;
 
-    @OneToOne
+    @ManyToOne
     private RestauranteEntity restauranteEntity;
 
     private boolean estado= true;
+
+
 
     @OneToMany(mappedBy = "platoEntity")
     private List<PedidoEntity> listaPedidos;

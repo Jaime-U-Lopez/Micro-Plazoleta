@@ -28,10 +28,13 @@ public class PedidoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+
+    @ManyToOne
+    @JoinColumn(name = "id_restaurante")
     private RestauranteEntity restauranteEntity;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "id_plato")
     private PlatoEntity platoEntity;
     private int cantidad;
     private String estado= "pendiente";

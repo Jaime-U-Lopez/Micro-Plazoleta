@@ -48,6 +48,7 @@ public class IPlatoHandlerImpl implements IPlatoHandler {
     @Override
     public void updatePlato(PlatoRequestUpdateDto platoRequestUpdateDto) {
 
+
         platoServicePort.updatePlato(platoRequestMapper.updatetoPlato(platoRequestUpdateDto));
 
     }

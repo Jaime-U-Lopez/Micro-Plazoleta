@@ -47,6 +47,7 @@ public class PlatoUseCase implements IPlatoServicePort {
     public void updatePlato(Plato plato) {
 
         //TODO ACTUALZIAR EL TEMA DE AUTENTICACION DE PROPIETARIO
+
         platoPersistenciaPort.updatePlato(plato);
 
     }

@@ -22,14 +22,14 @@ public class RestauranteRequestDto {
     @NotBlank
     private String nombre;
     @Positive(message = "El Nit  debe ser positivo")
-    @Max(value = 99999999999l, message = "El Nit  debe ser menor o igual a 9999999999")
+    @Max(value =  999999999l, message = "El Nit  debe ser menor o igual a 9999999999")
     private long nit;
 
     @NotBlank
     private String direccion;
 
     @Positive(message = "El número de teléfono debe ser positivo")
-    @Max(value = 9999999999L, message = "El teléfono  debe ser menor o igual a 9999999999")
+    @Max(value =  9999999999L, message = "El teléfono  debe ser menor o igual a 9999999999")
     private long telefono;
 
     @NotBlank

@@ -15,11 +15,13 @@ import lombok.Setter;
 public class PlatoRequestUpdateDto {
 
     @Positive(message = "El id  debe ser positivo")
-    private Long idplato;
+    private Long id;
     @Positive(message = "El precio  debe ser positivo")
     private Long precio;
     @NotBlank
     private String descripcion;
+
+
 
 
 
