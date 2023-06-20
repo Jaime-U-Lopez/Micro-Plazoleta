@@ -5,6 +5,8 @@ import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.exceptions.PlatoExce
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.exceptions.UsuarioYaExistenteException;
 import com.pragma.plazoletamicroservicio.configuration.FeignClient.ExceptionUserRequest;
 import feign.FeignException;
+import org.hibernate.id.IdentifierGenerationException;
+import org.mapstruct.ap.shaded.freemarker.template.utility.NullArgumentException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -34,6 +36,9 @@ public class ApiExceptionHandler {
             UsuarioYaExistenteException.class,
             PlatoException.class,
             ExceptionUserRequest.class,
+            NullPointerException.class,
+            NullArgumentException.class,
+            IdentifierGenerationException.class,
             PlatoNoExiste.class,
             FeignException.NotFound.class,
             FeignException.Unauthorized.class,

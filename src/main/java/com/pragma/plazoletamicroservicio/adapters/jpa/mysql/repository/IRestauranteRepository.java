@@ -7,10 +7,10 @@ import java.util.Optional;
 
 public interface IRestauranteRepository extends JpaRepository<RestauranteEntity,Long> {
 
-/*
-    Optional<RestauranteEntity> findRestauranteEntityByNumeroDocumento(String id);
+
+    Optional<RestauranteEntity> findRestauranteEntityByIdPropietario(String idPropietario);
 
 
- */
+
 
 }

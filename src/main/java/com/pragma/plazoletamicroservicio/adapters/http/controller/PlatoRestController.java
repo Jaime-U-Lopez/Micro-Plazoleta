@@ -2,21 +2,15 @@ package com.pragma.plazoletamicroservicio.adapters.http.controller;
 
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestUpdateDto;
-import com.pragma.plazoletamicroservicio.adapters.http.dto.response.PersonResponseDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.PlatoResponseDto;
-import com.pragma.plazoletamicroservicio.adapters.http.dto.response.RestauranteResponseDto;
 import com.pragma.plazoletamicroservicio.adapters.http.handlers.IPlatoHandler;
 import com.pragma.plazoletamicroservicio.configuration.Constants;
-import com.pragma.plazoletamicroservicio.configuration.FeignClient.ExceptionUserRequest;
-import com.pragma.plazoletamicroservicio.configuration.FeignClient.UserHandlerFeing;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/plato/v1")
@@ -34,7 +27,7 @@ import java.util.Optional;
 public class PlatoRestController {
 
 
-    private UserHandlerFeing userHandlerFeing;
+
     private  IPlatoHandler platoHandler;
     @Autowired
     public PlatoRestController(IPlatoHandler platoHandler) {
@@ -63,18 +56,23 @@ public class PlatoRestController {
     @PostMapping("/")
     public ResponseEntity<Map<String, String>>  createPlato(@Valid @RequestBody PlatoRequestDto requestDto ) {
 
-        try {
-            Optional<PersonResponseDto> response = userHandlerFeing.getOwner(4L);
-            if(!response.isEmpty()){
-                throw new ExceptionUserRequest("El id de ingresado no es Propietario");
-            }
-        }catch (Exception ex){
+       platoHandler.savePlato(requestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,Constants.PLATO_CREADO_MENSAJE)
+        );
+    }
 
-            ex.printStackTrace();
-        }
+    @Operation(summary = "Crear un plato ",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Message  returned",
+                            content = @Content(mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = PlatoRequestDto.class)))),
+                    @ApiResponse(responseCode = "404", description = "No data found",
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
+    @PostMapping("/")
+    public ResponseEntity<Map<String, String>>  habilitarODesabilitarPlatos(@Valid @RequestBody PlatoRequestDto requestDto ) {
 
-
-   platoHandler.savePlato(requestDto);
+        platoHandler.savePlato(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,Constants.PLATO_CREADO_MENSAJE)
         );

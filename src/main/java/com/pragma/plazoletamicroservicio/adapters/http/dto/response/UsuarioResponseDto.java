@@ -5,8 +5,10 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class PersonResponseDto {
+public class UsuarioResponseDto {
 
+
+    private String id;
     private String name;
     private String surname;
     private String email;

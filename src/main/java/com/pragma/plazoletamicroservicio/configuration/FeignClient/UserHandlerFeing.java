@@ -2,10 +2,9 @@ package com.pragma.plazoletamicroservicio.configuration.FeignClient;
 
 
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.LoginRequestDto;
-import com.pragma.plazoletamicroservicio.adapters.http.dto.response.PersonResponseDto;
-import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.UsuarioAutenticado;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.request.UsuarioAutenticadoRequestDto;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.response.UsuarioResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,13 +16,13 @@ import java.util.Optional;
 public interface UserHandlerFeing {
 
 
-    @GetMapping("user/owner/{id}")
-    public Optional<PersonResponseDto> getOwner(@PathVariable("id") Long id);
+    @GetMapping("user/owner/{email}")
+    public Optional<UsuarioResponseDto> getOwner(@PathVariable("email") String email);
 
 
 
     @PostMapping("auth/login")
-    public Optional<UsuarioAutenticado> authenticacion(@RequestBody LoginRequestDto LoginRequestDto);
+    public Optional<UsuarioAutenticadoRequestDto> authenticacion(@RequestBody LoginRequestDto LoginRequestDto);
 
 
 
