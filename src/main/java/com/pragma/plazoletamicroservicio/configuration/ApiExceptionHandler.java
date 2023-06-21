@@ -2,9 +2,11 @@ package com.pragma.plazoletamicroservicio.configuration;
 
 import com.pragma.plazoletamicroservicio.adapters.http.exceptions.*;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.exceptions.PlatoException;
+import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.exceptions.RestauranteYaExistenteException;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.exceptions.UsuarioYaExistenteException;
 import com.pragma.plazoletamicroservicio.configuration.FeignClient.ExceptionUserRequest;
 import feign.FeignException;
+import jakarta.persistence.NonUniqueResultException;
 import org.hibernate.id.IdentifierGenerationException;
 import org.mapstruct.ap.shaded.freemarker.template.utility.NullArgumentException;
 import org.springframework.http.HttpStatus;
@@ -40,9 +42,13 @@ public class ApiExceptionHandler {
             NullArgumentException.class,
             IdentifierGenerationException.class,
             PlatoNoExiste.class,
-            FeignException.NotFound.class,
+            NonUniqueResultException.class,
             FeignException.Unauthorized.class,
-            UsuarioNoSeEncuentraRegistradoException.class})
+            FeignException.NotFound.class,
+            RestauranteYaExistenteException.class,
+
+            UsuarioNoSeEncuentraRegistradoException.class
+    })
 
     public ResponseEntity<Object> BadRequestExceptionHandler(RuntimeException ex){
         ApiException apiException = new ApiException(
@@ -53,7 +59,10 @@ public class ApiExceptionHandler {
         return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler(value ={MethodArgumentNotValidException.class,
+
+            RestauranteYaExistenteException.class,
+            UsuarioNoSeEncuentraRegistradoException.class})
     public ResponseEntity<Object> handleValidationException(MethodArgumentNotValidException ex) {
         List<String> errorMessages = new ArrayList<>();
         for (ObjectError error : ex.getBindingResult().getAllErrors()) {

@@ -18,9 +18,6 @@ import java.util.List;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IPlatoRequestMapper {
 
-
-
-
     Plato toPlato(PlatoRequestDto platoRequestDto);
 
     //@Mapping(target = "plato.id", source = "idplato")

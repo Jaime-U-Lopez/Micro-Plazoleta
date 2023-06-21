@@ -1,5 +1,6 @@
 package com.pragma.plazoletamicroservicio.adapters.http.controller;
 
+import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoHabilitacionRequestDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestUpdateDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.PlatoResponseDto;
@@ -46,6 +47,22 @@ public class PlatoRestController {
         return ResponseEntity.ok(platoHandler.getAllPlatos());
     }
 
+
+
+    @Operation(summary = "mostrar todos los platos por Restaurante ",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "All Platos   returned",
+                            content = @Content(mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = PlatoResponseDto.class)))),
+                    @ApiResponse(responseCode = "404", description = "No data found",
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
+    @GetMapping("/")
+    public ResponseEntity<List<PlatoResponseDto>> getAllPlatosByRestaurante(@PathVariable String id  ) {
+        return ResponseEntity.ok(platoHandler.getPlatoByRestaurante(id));
+    }
+
+
+
     @Operation(summary = "Crear un plato ",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Message  returned",
@@ -62,17 +79,17 @@ public class PlatoRestController {
         );
     }
 
-    @Operation(summary = "Crear un plato ",
+    @Operation(summary = "Cambiar el estado de un plato ",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Message  returned",
                             content = @Content(mediaType = "application/json",
                                     array = @ArraySchema(schema = @Schema(implementation = PlatoRequestDto.class)))),
                     @ApiResponse(responseCode = "404", description = "No data found",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
-    @PostMapping("/")
-    public ResponseEntity<Map<String, String>>  habilitarODesabilitarPlatos(@Valid @RequestBody PlatoRequestDto requestDto ) {
+    @PostMapping("/estado")
+    public ResponseEntity<Map<String, String>>  habilitarODesabilitarPlatos(@Valid @RequestBody PlatoHabilitacionRequestDto platoHabilitacionRequestDto ) {
 
-        platoHandler.savePlato(requestDto);
+       // platoHandler.savePlato(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,Constants.PLATO_CREADO_MENSAJE)
         );

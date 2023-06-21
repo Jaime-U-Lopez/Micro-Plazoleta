@@ -12,6 +12,7 @@ public interface IPlatoServicePort {
     void deletePlato(Long id);
 
     Plato getPlato(Long id);
+    List<Plato> getPlatoByRestaurante(String id);
 
     List<Plato> getAllPlato();
 

@@ -15,10 +15,10 @@ import java.util.List;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IPlatoResponseMapper {
 
-    @Mapping(target = "restauranteEntity", source = "plato.restaurante")
+    @Mapping(target = "idRestaurante", source ="restaurante.id" )
     PlatoResponseDto platoToPlatoResponse(Plato plato);
 
-
+    @Mapping(target = "idRestaurante", source ="restaurante.id" )
     List<PlatoResponseDto> toResponseList(List<Plato> platoList);
 
 }

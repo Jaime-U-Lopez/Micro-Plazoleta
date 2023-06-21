@@ -18,6 +18,6 @@ public class PlatoResponseDto {
     private String categoria;
 
 
-    private RestauranteEntity restauranteEntity;
+    private Long idRestaurante;
     private boolean estado= true;
 }

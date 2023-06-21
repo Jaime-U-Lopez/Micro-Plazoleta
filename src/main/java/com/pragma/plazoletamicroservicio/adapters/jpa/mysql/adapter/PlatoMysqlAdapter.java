@@ -87,4 +87,16 @@ public class PlatoMysqlAdapter  implements IPlatoPersistenciaPort {
 
 
     }
+
+    @Override
+    public List<Plato> getPlatoByRestaurante(String id) {
+
+        Optional<List<PlatoEntity>>  platoEntityList = platoRepository.findPlatoEntityByRestauranteEntityId(id);
+        if(platoEntityList.isPresent()){
+            throw new PlatoException(Constants.LISTA_PLATO_NO_VACIA);
+
+        }
+
+        return platoEntityMapper.toPlatoList(platoEntityList.get());
+    }
 }

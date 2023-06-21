@@ -15,6 +15,7 @@ public interface   IPlatoPersistenciaPort {
 
     Plato getPlato(Long id);
 
+    List<Plato> getPlatoByRestaurante(String id);
     List<Plato> getAllPlato();
 
 

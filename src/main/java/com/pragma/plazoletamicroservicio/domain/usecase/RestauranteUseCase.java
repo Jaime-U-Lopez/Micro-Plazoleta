@@ -2,7 +2,9 @@ package com.pragma.plazoletamicroservicio.domain.usecase;
 
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.UsuarioResponseDto;
 import com.pragma.plazoletamicroservicio.adapters.http.exceptions.UsuarioNoSeEncuentraRegistradoException;
+import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.RestauranteEntity;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.UsuarioAutenticadoEntity;
+import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.exceptions.RestauranteYaExistenteException;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.mapper.RestauranteEntityMapper;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IRestauranteRepository;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.repository.IUsuarioAutenticadoRepository;
@@ -39,15 +41,28 @@ public class RestauranteUseCase implements IRestauranteServicePort {
 
 
         Optional <UsuarioAutenticadoEntity> usuario= usuarioAutenticadoRepository.findById(1L);
-        if(!usuario.isPresent()){
 
-            throw new UsuarioNoSeEncuentraRegistradoException("El id ingresado esta autenticado");
+        if(!usuario.isPresent()){
+            throw new UsuarioNoSeEncuentraRegistradoException("El id ingresado no esta autenticado");
         }
+
+
+        if( usuario.get().getId() == restaurante.getIdPropietario()){
+            throw new UsuarioNoSeEncuentraRegistradoException("El id ingresado no corresponde con el autenticado");
+        }
+
+        String idString=  String.valueOf(restaurante.getIdPropietario());
+
+        Optional<RestauranteEntity> restauranteEntity= restauranteRepository.findRestauranteEntityByIdPropietario(idString);
+        if(restauranteEntity.isPresent()){
+
+            throw new RestauranteYaExistenteException("El restaurante ya existe en la base de datos");
+        }
+
 
         Optional<UsuarioResponseDto> response = userHandlerFeing.getOwner( usuario.get().getNombreUsuario());
 
         restaurantePersistenciaPort.saveRestaurante(restaurante);
-
     }
 
     @Override

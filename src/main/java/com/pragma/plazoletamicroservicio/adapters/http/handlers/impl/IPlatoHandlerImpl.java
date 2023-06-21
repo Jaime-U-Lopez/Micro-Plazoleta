@@ -58,13 +58,13 @@ public class IPlatoHandlerImpl implements IPlatoHandler {
         platoServicePort.deletePlato(id);
 
 
-/*
+    }
 
-        Rol rol = roleResponseMapper.toRol(rolResponseDto);
-        rolServicePort.deleteRole(rol);
+    @Override
+    public List<PlatoResponseDto> getPlatoByRestaurante(String id) {
 
+        return platoResponseMapper.toResponseList(platoServicePort.getPlatoByRestaurante(id));
 
- */
     }
 
     @Override

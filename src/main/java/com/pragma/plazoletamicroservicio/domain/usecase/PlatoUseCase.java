@@ -94,6 +94,11 @@ public class PlatoUseCase implements IPlatoServicePort {
     }
 
     @Override
+    public List<Plato> getPlatoByRestaurante(String id) {
+        return this.platoPersistenciaPort.getPlatoByRestaurante(id);
+    }
+
+    @Override
     public List<Plato> getAllPlato() {
         return  this.platoPersistenciaPort.getAllPlato();
     }

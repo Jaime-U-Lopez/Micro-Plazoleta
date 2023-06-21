@@ -14,8 +14,8 @@ import java.util.List;
 public interface PlatoEntityMapper {
     Plato platoEntityToPlato(PlatoEntity platoEntity);
 
-
-    @Mapping(target = "restauranteEntity", source = "plato.restaurante")
-   PlatoEntity platotoPlatoEntity(Plato plato);
+    @Mapping(target = "restauranteEntity", source = "restaurante")
+    PlatoEntity platotoPlatoEntity(Plato plato);
+    @Mapping(target = "restaurante", source =   "restauranteEntity")
     List<Plato> toPlatoList(List<PlatoEntity> platoEntityList);
 }

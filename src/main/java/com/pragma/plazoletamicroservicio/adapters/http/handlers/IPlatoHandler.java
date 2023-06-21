@@ -5,6 +5,7 @@ import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestD
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestUpdateDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.PlatoResponseDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.RestauranteResponseDto;
+import com.pragma.plazoletamicroservicio.domain.model.Plato;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public interface IPlatoHandler {
     void updatePlato(PlatoRequestUpdateDto platoRequestUpdateDto);
     void deletePlato(Long id);
 
+    List<PlatoResponseDto> getPlatoByRestaurante(String id);
     PlatoResponseDto getPlato(Long id);
 
 }
