@@ -42,7 +42,7 @@ public class PlatoRestController {
                                     array = @ArraySchema(schema = @Schema(implementation = PlatoResponseDto.class)))),
                     @ApiResponse(responseCode = "404", description = "No data found",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
-    @GetMapping("/")
+    @GetMapping("/all_platos")
     public ResponseEntity<List<PlatoResponseDto>> getAllPlatos() {
         return ResponseEntity.ok(platoHandler.getAllPlatos());
     }
@@ -56,7 +56,7 @@ public class PlatoRestController {
                                     array = @ArraySchema(schema = @Schema(implementation = PlatoResponseDto.class)))),
                     @ApiResponse(responseCode = "404", description = "No data found",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
-    @GetMapping("/")
+    @GetMapping("/{id}")
     public ResponseEntity<List<PlatoResponseDto>> getAllPlatosByRestaurante(@PathVariable String id  ) {
         return ResponseEntity.ok(platoHandler.getPlatoByRestaurante(id));
     }

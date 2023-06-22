@@ -9,6 +9,8 @@ import com.pragma.plazoletamicroservicio.domain.model.Plato;
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 import com.pragma.plazoletamicroservicio.domain.spi.IRestaurantePersistenciaPort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.awt.*;
 import java.util.List;
@@ -63,8 +65,11 @@ public class RestauranteMysqlAdapter  implements IRestaurantePersistenciaPort {
 
 
     @Override
-    public List<Restaurante> getAllRestaurante() {
+    public List<Restaurante> getAllRestaurante(Pageable pageable) {
 
-        return  restauranteEntityMapper.toRestauranteList(restauranteRepository.findAll());
+
+
+
+        return  restauranteEntityMapper.toRestauranteList(restauranteRepository.findAllByOrderByNombreAsc(pageable));
     }
 }

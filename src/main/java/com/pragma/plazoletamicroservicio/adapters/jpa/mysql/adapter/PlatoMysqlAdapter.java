@@ -92,7 +92,7 @@ public class PlatoMysqlAdapter  implements IPlatoPersistenciaPort {
     public List<Plato> getPlatoByRestaurante(String id) {
 
         Optional<List<PlatoEntity>>  platoEntityList = platoRepository.findPlatoEntityByRestauranteEntityId(id);
-        if(platoEntityList.isPresent()){
+        if(!platoEntityList.isPresent()){
             throw new PlatoException(Constants.LISTA_PLATO_NO_VACIA);
 
         }

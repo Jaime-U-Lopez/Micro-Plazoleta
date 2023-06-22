@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface IPlatoRepository extends JpaRepository<PlatoEntity ,Long> {
 
     Optional<List<PlatoEntity>> findPlatoEntityByRestauranteEntityId(String id);
-
+    Optional<List<PlatoEntity>> findPlatoEntityByCategoriaAndRestauranteEntityId(String categoria, String id );
 }

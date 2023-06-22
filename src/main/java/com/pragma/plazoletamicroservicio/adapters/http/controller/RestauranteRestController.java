@@ -2,6 +2,7 @@ package com.pragma.plazoletamicroservicio.adapters.http.controller;
 
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.RestauranteRequestDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.RestauranteResponseDto;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.response.RestauranteResponseListDto;
 import com.pragma.plazoletamicroservicio.adapters.http.handlers.IRestauranteHandler;
 import com.pragma.plazoletamicroservicio.configuration.Constants;
 
@@ -11,6 +12,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -88,8 +91,13 @@ public class RestauranteRestController {
             })
 
     @GetMapping("/restaurantes")
-    public List<RestauranteResponseDto> getAllRestaurantes(){
-        return restauranteHandler.getAllRestauntes();
+    public List<RestauranteResponseListDto> getAllRestaurantes(@RequestParam(defaultValue = "0") int pagina,
+                                                               @RequestParam(defaultValue = "10") int elementosPorPagina){
+
+
+        Pageable pageable = PageRequest.of(pagina, elementosPorPagina);
+
+        return restauranteHandler.getAllRestauntes(pageable);
     }
 
 

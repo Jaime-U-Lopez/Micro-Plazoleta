@@ -15,7 +15,7 @@ import java.util.List;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IPlatoResponseMapper {
 
-    @Mapping(target = "idRestaurante", source ="restaurante.id" )
+   // @Mapping(target = "idRestaurante", source ="restaurante.id" )
     PlatoResponseDto platoToPlatoResponse(Plato plato);
 
     @Mapping(target = "idRestaurante", source ="restaurante.id" )

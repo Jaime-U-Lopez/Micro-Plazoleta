@@ -13,6 +13,7 @@ import com.pragma.plazoletamicroservicio.domain.api.IRestauranteServicePort;
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 import com.pragma.plazoletamicroservicio.domain.spi.IRestaurantePersistenciaPort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -79,7 +80,7 @@ public class RestauranteUseCase implements IRestauranteServicePort {
     }
 
     @Override
-    public List<Restaurante> getAllRestaurante() {
-        return restaurantePersistenciaPort.getAllRestaurante();
+    public List<Restaurante> getAllRestaurante(Pageable pageable) {
+        return restaurantePersistenciaPort.getAllRestaurante(pageable);
     }
 }

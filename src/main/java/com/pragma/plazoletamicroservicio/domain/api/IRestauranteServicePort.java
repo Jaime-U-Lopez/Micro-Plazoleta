@@ -1,6 +1,7 @@
 package com.pragma.plazoletamicroservicio.domain.api;
 
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface IRestauranteServicePort {
 
     Restaurante getRestaurante(Long id);
 
-    List<Restaurante> getAllRestaurante();
+    List<Restaurante> getAllRestaurante(Pageable pageable);
 
 
 }

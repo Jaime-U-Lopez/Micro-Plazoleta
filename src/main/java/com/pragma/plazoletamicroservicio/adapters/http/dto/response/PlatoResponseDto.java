@@ -16,8 +16,5 @@ public class PlatoResponseDto {
     private String descripcion;
     private String urlImagen;
     private String categoria;
-
-
-    private Long idRestaurante;
     private boolean estado= true;
 }

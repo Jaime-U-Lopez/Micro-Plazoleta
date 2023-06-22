@@ -2,6 +2,7 @@ package com.pragma.plazoletamicroservicio.adapters.http.handlers.impl;
 
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.RestauranteRequestDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.RestauranteResponseDto;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.response.RestauranteResponseListDto;
 import com.pragma.plazoletamicroservicio.adapters.http.handlers.IRestauranteHandler;
 import com.pragma.plazoletamicroservicio.adapters.http.mapper.IRestauranteRequestMapper;
 import com.pragma.plazoletamicroservicio.adapters.http.mapper.IRestauranteResponseMapper;
@@ -9,6 +10,7 @@ import com.pragma.plazoletamicroservicio.domain.api.IRestauranteServicePort;
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,9 +55,9 @@ public class IRestauranteHandlerImpl implements IRestauranteHandler {
     }
 
     @Override
-    public List<RestauranteResponseDto> getAllRestauntes() {
+    public List<RestauranteResponseListDto> getAllRestauntes(Pageable pageable ) {
 
-        return  restauranteResponseMapper.toResponseList(restauranteServicePort.getAllRestaurante());
+        return  restauranteResponseMapper.toResponseList(restauranteServicePort.getAllRestaurante(pageable));
     }
 
     @Override

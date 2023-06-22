@@ -4,6 +4,7 @@ import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.RestauranteEn
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public interface RestauranteEntityMapper {
     Restaurante restauranteEntityToRestaurante(RestauranteEntity restauranteEntity);
    RestauranteEntity restaurantetoRestauranteEntity(Restaurante restaurante);
-    List<Restaurante> toRestauranteList(List<RestauranteEntity> RestauranteEntityList);
+    List<Restaurante> toRestauranteList(Page<RestauranteEntity> RestauranteEntityList);
 
 
 }
