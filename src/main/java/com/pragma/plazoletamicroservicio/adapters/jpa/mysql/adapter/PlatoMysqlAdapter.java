@@ -1,4 +1,5 @@
 package com.pragma.plazoletamicroservicio.adapters.jpa.mysql.adapter;
+import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoHabilitacionRequestDto;
 import com.pragma.plazoletamicroservicio.adapters.http.exceptions.PlatoNoExiste;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.PlatoEntity;
 import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.exceptions.PlatoException;
@@ -30,8 +31,6 @@ public class PlatoMysqlAdapter  implements IPlatoPersistenciaPort {
     @Override
     public void savePlato(PlatoEntity platoEntity ) {
 
-
-
         this.platoRepository.save(platoEntity);
 
     }
@@ -45,10 +44,8 @@ public class PlatoMysqlAdapter  implements IPlatoPersistenciaPort {
            throw new PlatoNoExiste(Constants.PLATO_NO_EXITE);
 
        }
-
         plato1.get().setPrecio(plato.getPrecio());
         plato1.get().setDescripcion(plato.getDescripcion());
-
 
         this.platoRepository.save(plato1.get());
     }
@@ -74,6 +71,11 @@ public class PlatoMysqlAdapter  implements IPlatoPersistenciaPort {
         }
         return platoEntityMapper.platoEntityToPlato(platoEntity.get());
 
+    }
+
+    @Override
+    public void changeStatePlato(Plato plato) {
+         platoRepository.saveAndFlush(platoEntityMapper.platotoPlatoEntity(plato));
     }
 
     @Override

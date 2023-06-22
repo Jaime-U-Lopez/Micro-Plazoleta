@@ -51,6 +51,10 @@ public class PlatoUseCase implements IPlatoServicePort {
             throw new UsuarioNoSeEncuentraRegistradoException("No hay usuario autenticado de Propietario");
    }
 
+    if(plato.getRestaurante().getIdPropietario()==usuarioRepositorio.get().getId()){
+         throw new UsuarioNoSeEncuentraRegistradoException("El usuario propietario del restaurante del plato no esta autenticdo ");
+        }
+
     Optional<UsuarioResponseDto> usuarioLogueado = userHandlerFeing.getOwner(usuarioRepositorio.get().getNombreUsuario());
 
     Optional<RestauranteEntity> restauranteEntityOptional=   restauranteRepository.findRestauranteEntityByIdPropietario(usuarioLogueado.get().getId());
@@ -75,7 +79,6 @@ public class PlatoUseCase implements IPlatoServicePort {
 
 
 
-
         platoPersistenciaPort.updatePlato(plato);
 
     }
@@ -85,6 +88,31 @@ public class PlatoUseCase implements IPlatoServicePort {
 
         this.platoPersistenciaPort.deletePlato(id);
 
+    }
+
+    @Override
+    public void changeStatePlato(Plato plato) {
+
+
+        Optional <UsuarioAutenticadoEntity> usuarioRepositorio= usuarioAutenticadoRepository.findById(1L);
+
+        if(!usuarioRepositorio.isPresent()){
+            throw new UsuarioNoSeEncuentraRegistradoException("No hay usuario autenticado de Propietario");
+        }
+
+
+        if(plato.getRestaurante().getIdPropietario()==usuarioRepositorio.get().getId()){
+            throw new UsuarioNoSeEncuentraRegistradoException("El usuario propietario del restaurante del plato no esta autenticdo ");
+
+
+        }
+
+        Optional<UsuarioResponseDto> usuarioLogueado = userHandlerFeing.getOwner(usuarioRepositorio.get().getNombreUsuario());
+
+
+
+
+        this.platoPersistenciaPort.changeStatePlato(plato);
     }
 
 

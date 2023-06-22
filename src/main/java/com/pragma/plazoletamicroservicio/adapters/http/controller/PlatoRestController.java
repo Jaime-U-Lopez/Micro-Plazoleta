@@ -58,8 +58,8 @@ public class PlatoRestController {
                                     array = @ArraySchema(schema = @Schema(implementation = PlatoResponseDto.class)))),
                     @ApiResponse(responseCode = "404", description = "No data found",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
-    @GetMapping("/{id}")
-    public ResponseEntity<List<PlatoResponseDto>> getAllPlatosByRestaurante(@RequestParam(defaultValue = "1")   String idRestaurante,
+    @GetMapping("/{idRestaurante}")
+    public ResponseEntity<List<PlatoResponseDto>> getAllPlatosByRestaurante(@PathVariable("idRestaurante")   String idRestaurante,
                                                                             @RequestParam(defaultValue = "pollo") String categoria ,
                                                                             @RequestParam(defaultValue = "0") int pagina,
                                                                             @RequestParam(defaultValue = "10") int elementosPorPagina){
@@ -96,7 +96,7 @@ public class PlatoRestController {
     @PostMapping("/estado")
     public ResponseEntity<Map<String, String>>  habilitarODesabilitarPlatos(@Valid @RequestBody PlatoHabilitacionRequestDto platoHabilitacionRequestDto ) {
 
-       // platoHandler.savePlato(requestDto);
+        platoHandler.changeStatePlato(platoHabilitacionRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,Constants.PLATO_CREADO_MENSAJE)
         );

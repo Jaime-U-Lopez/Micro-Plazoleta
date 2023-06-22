@@ -1,5 +1,6 @@
 package com.pragma.plazoletamicroservicio.adapters.http.handlers.impl;
 
+import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoHabilitacionRequestDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestUpdateDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.response.PlatoResponseDto;
@@ -52,6 +53,12 @@ public class IPlatoHandlerImpl implements IPlatoHandler {
 
         platoServicePort.updatePlato(platoRequestMapper.updatetoPlato(platoRequestUpdateDto));
 
+    }
+
+    @Override
+    public void changeStatePlato(PlatoHabilitacionRequestDto platoHabilitacionRequestDto) {
+
+        platoServicePort.changeStatePlato(platoRequestMapper.changeUpdateStatetoPlato(platoHabilitacionRequestDto));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.pragma.plazoletamicroservicio.adapters.http.mapper;
 
 
+import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoHabilitacionRequestDto;
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestDto;
 
 import com.pragma.plazoletamicroservicio.adapters.http.dto.request.PlatoRequestUpdateDto;
@@ -22,5 +23,8 @@ public interface IPlatoRequestMapper {
 
     //@Mapping(target = "plato.id", source = "idplato")
     Plato updatetoPlato( PlatoRequestUpdateDto platoRequestUpdateDto);
+
+    Plato changeUpdateStatetoPlato(PlatoHabilitacionRequestDto platoHabilitacionRequestDto);
+
     List<PlatoResponseDto> toResponseList(List<Plato> platoList);
 }

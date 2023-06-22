@@ -11,6 +11,7 @@ public interface IPlatoServicePort {
     void savePlato(Plato plato);
     void updatePlato(Plato plato);
     void deletePlato(Long id);
+    void changeStatePlato(Plato plato);
 
     Plato getPlato(Long id);
     List<Plato> getPlatoByRestaurante(String id, String categoria , Pageable pegeable);
