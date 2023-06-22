@@ -13,6 +13,7 @@ import com.pragma.plazoletamicroservicio.configuration.FeignClient.UserHandlerFe
 import com.pragma.plazoletamicroservicio.domain.api.IPlatoServicePort;
 import com.pragma.plazoletamicroservicio.domain.model.Plato;
 import com.pragma.plazoletamicroservicio.domain.spi.IPlatoPersistenciaPort;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -94,8 +95,8 @@ public class PlatoUseCase implements IPlatoServicePort {
     }
 
     @Override
-    public List<Plato> getPlatoByRestaurante(String id) {
-        return this.platoPersistenciaPort.getPlatoByRestaurante(id);
+    public List<Plato> getPlatoByRestaurante(String id, String categoria , Pageable pegeable) {
+        return this.platoPersistenciaPort.getPlatoByRestaurante( id,  categoria , pegeable);
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.pragma.plazoletamicroservicio.domain.api.IPlatoServicePort;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,9 +62,9 @@ public class IPlatoHandlerImpl implements IPlatoHandler {
     }
 
     @Override
-    public List<PlatoResponseDto> getPlatoByRestaurante(String id) {
+    public List<PlatoResponseDto> getPlatoByRestaurante(String id, String categoria , Pageable pegeable) {
 
-        return platoResponseMapper.toResponseList(platoServicePort.getPlatoByRestaurante(id));
+        return platoResponseMapper.toResponseList(platoServicePort.getPlatoByRestaurante( id,  categoria ,  pegeable));
 
     }
 

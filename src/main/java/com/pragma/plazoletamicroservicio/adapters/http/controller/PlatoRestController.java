@@ -13,6 +13,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -57,8 +59,13 @@ public class PlatoRestController {
                     @ApiResponse(responseCode = "404", description = "No data found",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @GetMapping("/{id}")
-    public ResponseEntity<List<PlatoResponseDto>> getAllPlatosByRestaurante(@PathVariable String id  ) {
-        return ResponseEntity.ok(platoHandler.getPlatoByRestaurante(id));
+    public ResponseEntity<List<PlatoResponseDto>> getAllPlatosByRestaurante(@RequestParam(defaultValue = "1")   String idRestaurante,
+                                                                            @RequestParam(defaultValue = "pollo") String categoria ,
+                                                                            @RequestParam(defaultValue = "0") int pagina,
+                                                                            @RequestParam(defaultValue = "10") int elementosPorPagina){
+
+        Pageable pageable = PageRequest.of(pagina, elementosPorPagina);
+        return ResponseEntity.ok(platoHandler.getPlatoByRestaurante(idRestaurante, categoria ,  pageable));
     }
 
 

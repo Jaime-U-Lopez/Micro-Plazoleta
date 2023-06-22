@@ -2,6 +2,7 @@ package com.pragma.plazoletamicroservicio.domain.api;
 
 import com.pragma.plazoletamicroservicio.domain.model.Plato;
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface IPlatoServicePort {
     void deletePlato(Long id);
 
     Plato getPlato(Long id);
-    List<Plato> getPlatoByRestaurante(String id);
+    List<Plato> getPlatoByRestaurante(String id, String categoria , Pageable pegeable);
 
     List<Plato> getAllPlato();
 

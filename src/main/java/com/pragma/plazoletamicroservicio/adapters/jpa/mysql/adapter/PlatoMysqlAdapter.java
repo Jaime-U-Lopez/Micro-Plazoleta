@@ -8,6 +8,7 @@ import com.pragma.plazoletamicroservicio.configuration.Constants;
 import com.pragma.plazoletamicroservicio.domain.model.Plato;
 import com.pragma.plazoletamicroservicio.domain.spi.IPlatoPersistenciaPort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -89,9 +90,9 @@ public class PlatoMysqlAdapter  implements IPlatoPersistenciaPort {
     }
 
     @Override
-    public List<Plato> getPlatoByRestaurante(String id) {
+    public List<Plato> getPlatoByRestaurante(String id, String categoria , Pageable pegeable ) {
 
-        Optional<List<PlatoEntity>>  platoEntityList = platoRepository.findPlatoEntityByRestauranteEntityId(id);
+        Optional<List<PlatoEntity>>  platoEntityList = platoRepository.findPlatoEntityByCategoriaAndRestauranteEntityId(categoria,id,pegeable );
         if(!platoEntityList.isPresent()){
             throw new PlatoException(Constants.LISTA_PLATO_NO_VACIA);
 
