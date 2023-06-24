@@ -1,5 +1,6 @@
 package com.pragma.plazoletamicroservicio.adapters.http.dto.request;
 
+import com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity.PlatoEntity;
 import com.pragma.plazoletamicroservicio.domain.model.Pedido;
 import com.pragma.plazoletamicroservicio.domain.model.Plato;
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,19 +22,14 @@ import java.util.List;
 public class PedidoRequestDto {
 
 
-
+    private  String  clienteEmail ;
     private  Long  IdRestaurante ;
-    private  Long  idPlato ;
+    private List<PlatoEntity> platos;
 
-    @Positive(message = "El cantidad debe ser positivo")
-    private int cantidad;
+    private Map<Plato, Integer> cantidadPorPlato;
 
     @NotBlank
     private String estado= "pendiente";
-
-
-    private List<Pedido> listaPedidos;
-
 
 
 

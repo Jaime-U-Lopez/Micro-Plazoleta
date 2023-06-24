@@ -15,6 +15,7 @@ import java.util.List;
 
 
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "pedido")
@@ -33,12 +34,17 @@ public class PedidoEntity {
     @JoinColumn(name = "id_restaurante")
     private RestauranteEntity restauranteEntity;
 
-    @ManyToOne
-    @JoinColumn(name = "id_plato")
-    private PlatoEntity platoEntity;
-    private int cantidad;
-    private String estado= "pendiente";
+    //@ManyToOne
+    //@JoinColumn(name = "id_plato")
+   // private PlatoEntity platoEntity;
 
+    private String estado;
+
+    @ManyToMany
+    private List<PlatoEntity> platos;
+
+    @ElementCollection
+    private Map<PlatoEntity, Integer> cantidadPorPlato;
 
 
 

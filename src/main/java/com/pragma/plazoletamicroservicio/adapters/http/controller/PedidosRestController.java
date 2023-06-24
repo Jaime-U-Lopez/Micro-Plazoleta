@@ -36,7 +36,7 @@ public class PedidosRestController {
     responses = {
             @ApiResponse(responseCode = "201", description = "Creacion de Pedidos  ",
             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Map"))),
-            @ApiResponse(responseCode = "409", description = "Restaurante ya existente",
+            @ApiResponse(responseCode = "409", description = "Pedido ya existe",
                     content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))
     })
     @PostMapping("/")

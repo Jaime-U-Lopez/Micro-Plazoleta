@@ -2,6 +2,7 @@ package com.pragma.plazoletamicroservicio.adapters.jpa.mysql.entity;
 
 
 import com.pragma.plazoletamicroservicio.domain.model.Pedido;
+import com.pragma.plazoletamicroservicio.domain.model.Plato;
 import com.pragma.plazoletamicroservicio.domain.model.Restaurante;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "plato")
@@ -30,14 +32,13 @@ public class PlatoEntity {
     private String urlImagen;
     private String categoria;
 
+
+
     @ManyToOne
     private RestauranteEntity restauranteEntity;
 
     private boolean estado= true;
 
 
-
-    @OneToMany(mappedBy = "platoEntity")
-    private List<PedidoEntity> listaPedidos;
 
 }

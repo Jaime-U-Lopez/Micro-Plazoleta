@@ -1,6 +1,7 @@
 package com.pragma.plazoletamicroservicio.domain.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class Pedido {
 
@@ -8,31 +9,17 @@ public class Pedido {
     private Long id;
 
     private Restaurante restaurante;
-    private Plato plato;
-    private int cantidad;
-    private String estado= "pendiente";
 
-    private List<Pedido> listaPedidos;
+    private List<Plato> platos;
+    private Map<Plato, Integer> cantidadPorPlato;
+    private String estado;
 
-    public Pedido(Long id, Restaurante restaurante, Plato plato, int cantidad, String estado, List<Pedido> listaPedidos) {
+    public Pedido(Long id, Restaurante restaurante, List<Plato> platos, Map<Plato, Integer> cantidadPorPlato, String estado) {
         this.id = id;
         this.restaurante = restaurante;
-        this.plato = plato;
-        this.cantidad = cantidad;
+        this.platos = platos;
+        this.cantidadPorPlato = cantidadPorPlato;
         this.estado = estado;
-        this.listaPedidos = listaPedidos;
-    }
-
-    public Restaurante getRestaurante() {
-        return restaurante;
-    }
-
-    public void setRestaurante(Restaurante restaurante) {
-        this.restaurante = restaurante;
-    }
-
-    public Plato getPlato() {
-        return plato;
     }
 
     public Long getId() {
@@ -43,16 +30,28 @@ public class Pedido {
         this.id = id;
     }
 
-    public void setPlato(Plato plato) {
-        this.plato = plato;
+    public Restaurante getRestaurante() {
+        return restaurante;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public void setRestaurante(Restaurante restaurante) {
+        this.restaurante = restaurante;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public List<Plato> getPlatos() {
+        return platos;
+    }
+
+    public void setPlatos(List<Plato> platos) {
+        this.platos = platos;
+    }
+
+    public Map<Plato, Integer> getCantidadPorPlato() {
+        return cantidadPorPlato;
+    }
+
+    public void setCantidadPorPlato(Map<Plato, Integer> cantidadPorPlato) {
+        this.cantidadPorPlato = cantidadPorPlato;
     }
 
     public String getEstado() {
@@ -61,13 +60,5 @@ public class Pedido {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public List<Pedido> getListaPedidos() {
-        return listaPedidos;
-    }
-
-    public void setListaPedidos(List<Pedido> listaPedidos) {
-        this.listaPedidos = listaPedidos;
     }
 }
